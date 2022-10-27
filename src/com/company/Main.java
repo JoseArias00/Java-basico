@@ -43,8 +43,8 @@ public class Main<opcion> {
             case 3: Fechas fechas = new Fechas();
                 fechas.main();
                 break;
-            case 4: Clases clases = new Clases();
-                clases.main();
+            case 4: ItemsSeparator itemsSeparator = new ItemsSeparator();
+                itemsSeparator.main();
                 break;
             case 5: Aleatorios aleatorios = new Aleatorios();
                 aleatorios.main();
