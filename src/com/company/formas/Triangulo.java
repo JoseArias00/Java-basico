@@ -14,6 +14,9 @@ public class Triangulo {
     public Triangulo(){
     }
 
+    /**
+     * Método encargado de crear el triangulo a partir de dos lados
+     */
     public void crear(){
         lado1 = Math.random()*100-1;
         lado2 = Math.random()*100-1;
@@ -25,6 +28,9 @@ public class Triangulo {
         area=(lado1*altura)/2;
     }
 
+    /**
+     *  Metodo encargado de mostrar los valores indicados del triangulo
+     */
     public void mostrar(){
         System.out.println("---Triangulo---");
         System.out.println("Cateto 1: " + lado1);

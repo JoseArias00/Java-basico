@@ -31,7 +31,7 @@ public class Aleatorios {
      *                 <p>
      *                 Método encargado de generar el número indicado de círculos con valores aleatorios.
      */
-    public static void generaCirculos(int cantidad) {
+    private static void generaCirculos(int cantidad) {
         for (int i = 0; i < cantidad; i++) {
             Circulo circulo = new Circulo();
             circulo.crear();

@@ -7,14 +7,11 @@ public class Circulo {
     private double circunferencia;
     private double area;
 
-    /**
-     *              Constructor de la clase
-     */
     public Circulo() {
     }
 
     /**
-     * Método encargado de crear a partir del radio los siguientes parámetros
+     * Método encargado de crear el circulo a partir del radio los siguientes parámetros
      */
     public void crear() {
         radio = Math.random() * 100 + 1;
