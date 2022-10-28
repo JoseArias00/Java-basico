@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.util.Scanner;
 
 public class Main<opcion> {
+    public static final int REDONDEO = 4;
+
 
     /**
      *
@@ -55,7 +57,9 @@ public class Main<opcion> {
             case 7: CRUD crud = new CRUD();
                 crud.main();
                 break;
-            default: System.out.println("Porfavor introduzca una opcion valida");
+            default: System.out.println("La opción introducida no es válida introduzca una opcion valida");
         }
     }
+
+
 }
