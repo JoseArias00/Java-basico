@@ -41,7 +41,9 @@ public class Rectángulo extends Rectangular {
      * Método encargado de concatenar a la cadena de la clase FormasGeométricas los valores del rectángulo generado
      */
     public String toString() {
-        return super.toString().concat("---Rectángulo---\nLados1: " + lados1.setScale(Main.REDONDEO, RoundingMode.HALF_UP) + " cm\nLados2: " + lados2.setScale(Main.REDONDEO, RoundingMode.HALF_UP) + " cm\nÁrea: " + área().setScale(Main.REDONDEO, RoundingMode.HALF_UP) + " cm");
+        return super.toString().concat("---Rectángulo---\nLados1: " + lados1.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +
+                " cm\nLados2: " + lados2.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +
+                " cm\nÁrea: " + área().setScale(Main.REDONDEO, RoundingMode.HALF_UP) + " cm");
     }
 
 }

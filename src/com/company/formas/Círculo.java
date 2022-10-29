@@ -41,6 +41,8 @@ public class Círculo extends FormasGeométricas {
      * Método encargado de concatenar los valores de cada círculo creado con la cadena inicial de la clase FormasGeométricas para distinguir cada figura
      */
     public String toString() {
-        return super.toString().concat("---Círculo---\nRadio: " + radio.setScale(Main.REDONDEO, RoundingMode.HALF_UP) + "cm\nÁrea: " + área().setScale(Main.REDONDEO, RoundingMode.HALF_UP) + "cm\nCircunferencia: " + circunferencia.setScale(Main.REDONDEO, RoundingMode.HALF_UP) + "cm");
+        return super.toString().concat("---Círculo---\nRadio: " + radio.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +
+                " cm\nÁrea: " + área().setScale(Main.REDONDEO, RoundingMode.HALF_UP) +
+                " cm\nCircunferencia: " + circunferencia.setScale(Main.REDONDEO, RoundingMode.HALF_UP) + " cm");
     }
 }
