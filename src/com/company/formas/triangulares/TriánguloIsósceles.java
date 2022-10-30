@@ -42,7 +42,7 @@ public class TriánguloIsósceles extends Triangular {
      * Método encargado de concatenar a la cadena de la clase FormasGeométricas los valores del triángulo generado
      */
     public String toString() {
-        return super.toString().concat("---TriánguloIsósceles---\nLadosIguales: " + ladosIguales.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +
+        return super.toString().concat("---Triángulo Isósceles---\nLadosIguales: " + ladosIguales.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +
                 " cm\nLadoDesigual: " + ladoDesigual.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +
                 " cm\nÁrea: " + área().setScale(Main.REDONDEO, RoundingMode.HALF_UP) + " cm");
     }

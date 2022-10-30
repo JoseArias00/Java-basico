@@ -15,12 +15,12 @@ public class Main<opcion> {
     public static void main(String[] args) throws ParseException {
         //Primero indicaremos el ejercicio a ejecutar usando scanner
         System.out.println("Indica el ejercicio a realizar: " +
-                "\n1. Operaciones con numeros" +
+                "\n1. Operaciones con números" +
                 "\n2. Operaciones con texto" +
                 "\n3. Operaciones con fechas" +
                 "\n4. Operaciones con clases" +
-                "\n5. Generacion aleatorio" +
-                "\n6. Curiosidad matematica" +
+                "\n5. Generación aleatorio" +
+                "\n6. Curiosidad matemática" +
                 "\n7. CRUD");
         Scanner sc = new Scanner(System.in);
         int opcion;

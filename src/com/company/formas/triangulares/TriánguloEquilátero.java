@@ -38,7 +38,7 @@ public class TriánguloEquilátero extends Triangular {
      * Método encargado de concatenar a la cadena de la clase FormasGeométricas los valores del triángulo generado
      */
     public String toString() {
-        return super.toString().concat("---TriánguloEquilátero---\nLados: " + lados.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +
+        return super.toString().concat("---Triángulo Equilátero---\nLados: " + lados.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +
                 " cm\nÁrea: " + área().setScale(Main.REDONDEO, RoundingMode.HALF_UP) + " cm");
     }
 }

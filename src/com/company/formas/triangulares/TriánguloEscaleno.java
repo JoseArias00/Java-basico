@@ -47,7 +47,7 @@ public class TriánguloEscaleno extends Triangular {
      * Método encargado de concatenar a la cadena de la clase FormasGeométricas los valores del triángulo generado
      */
     public String toString() {
-        return super.toString().concat("---TriánguloEscaleno---\nLado1: " + lado1.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +
+        return super.toString().concat("---Triángulo Escaleno---\nLado1: " + lado1.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +
                 " cm\nLado2: " + lado2.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +
                 " cm\nLado3: " + lado3.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +
                 " cm\nÁrea: " + área().setScale(Main.REDONDEO, RoundingMode.HALF_UP) + " cm");
