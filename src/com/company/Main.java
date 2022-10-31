@@ -36,10 +36,10 @@ public class Main<opcion> {
      */
     private static void seleccion(int opcion) throws ParseException {
         switch (opcion){
-            case 1: Numeros numeros = new Numeros();
+            case 1: Números numeros = new Números();
                 numeros.main();
                 break;
-            case 2: Texto texto = new Texto();
+            case 2: OperacionTexto texto = new OperacionTexto();
                 texto.main();
                 break;
             case 3: Fechas fechas = new Fechas();

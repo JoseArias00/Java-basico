@@ -1,66 +1,60 @@
 package com.company;
 
-import javax.sound.midi.SysexMessage;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class Texto {
-    private static final String TEXTO = "Proconsi es una empresa de Tecnologías de la Información y la Comunicación especializada en el " +
+    private final String TEXTEJEMPLO = "Proconsi es una empresa de Tecnologías de la Información y la Comunicación especializada en el " +
             "desarrollo e integración de soluciones informáticas para todo tipo de empresas. Más de tres décadas de experiencia " +
             "avalan a una compañía tan flexible como responsable. Cuenta con un equipo multidisciplinar de más de 120 " +
             "profesionales cualificados, expertos y comprometidos con un único objetivo: hallar la solución tecnológica exacta " +
             "para cada cliente. Proconsi es especialista en la creación y el desarrollo de software de gestión, consultoría " +
             "tecnológica, dirección y gestión de proyectos I+D+i basados en TIC, soporte técnico, aplicaciones móviles y fomento " +
             "de tendencias en nuevas tecnologías, como el cloud computing.";
+    private String cadena = "";
 
-    /**
-     * Metodo principal que llama al resto de metodos
-     */
-    public static void main() {
-        cuentaCaracteres();
-        aMayus();
-        aMinus();
-        repeticiones();
-        reemplazo();
-        concatenar();
+    public Texto() {
+        cadena = TEXTEJEMPLO;
+    }
 
+    public Texto(String cadena) {
+        this.cadena = cadena;
     }
 
     /**
-     * Metodo encargado de contar el numero total de caracteres de la cadena
+     * Método encargado de contar el número total de caracteres de la cadena
      */
-    private static void cuentaCaracteres() {
+    public void cuentaCaracteres() {
         int caracteres;
 
-        caracteres = TEXTO.replace(" ", "").length(); //Con esto omitimos que cuenta los espacios
-        System.out.println("Numero de caracteres totales: " + caracteres);
+        caracteres = cadena.replace(" ", "").length(); //Con esto omitimos que cuenta los espacios
+        System.out.println("Número de caracteres totales: " + caracteres);
     }
 
     /**
-     * Metodo que escribe toda la cadena en mayusculas
+     * Método que escribe toda la cadena en mayúsculas
      */
-    private static void aMayus() {
-        String mayusculas = TEXTO.toUpperCase(Locale.ROOT);
-        System.out.println(mayusculas);
+    public void aMayus() {
+        String mayúsculas = cadena.toUpperCase();
+        System.out.println("Texto en mayúsculas: " + mayúsculas);
     }
 
     /**
-     * Metodo que escribe toda la cadena en minusculas
+     * Método que escribe toda la cadena en minúsculas
      */
-    private static void aMinus() {
-        String minusculas = TEXTO.toLowerCase(Locale.ROOT);
-        System.out.println(minusculas);
+    public void aMinus() {
+        String minúsculas = cadena.toLowerCase();
+        System.out.println("Texto en minúsculas: " + minúsculas);
     }
 
     /**
-     * Metodo que muestra las palabras que aparecen mas de una vez en la cadena
+     * Método que muestra las palabras que aparecen más de una vez en la cadena
      */
-    private static void repeticiones() {
-        String[] palabras = TEXTO.split(" ");
+    public void repeticiones() {
+        String[] palabras = cadena.split(" ");
         HashMap<String, Integer> mapaPalabras = new HashMap<>();
 
+        //Primero almacenamos todas las palabras de la cadena en un mapa, donde si se encuentra una palabra por primera vez se añade y si no al valor con el que se relaciona se le sumará 1
         for (int i = 0; i < palabras.length; i++) {
             if (!mapaPalabras.containsKey(palabras[i])) {
                 mapaPalabras.put(palabras[i], 1);
@@ -69,6 +63,7 @@ public class Texto {
             }
         }
 
+        //Imprimimos por pantalla todas las palabras con valor > 1
         for (Map.Entry entry : mapaPalabras.entrySet()) {
             if ((Integer) entry.getValue() > 1) {
                 System.out.print(entry.getKey() + "[" + entry.getValue() + "]");
@@ -79,30 +74,30 @@ public class Texto {
     }
 
     /**
-     * Metodo que reemplaza 'Proconsi' por 'Isnocorp'
+     * Método que reemplaza 'Proconsi' por 'Isnocorp'
      */
-    private static void reemplazo() {
-        String textoRemplazo = TEXTO.replace("Proconsi", "Isnocorp");
-        System.out.println(textoRemplazo);
+    public void reemplazo() {
+        String textoRemplazo = cadena.replace("Proconsi", "Isnocorp");
+        System.out.println("Sustituimos 'Proconsi' por 'Isnocorp': " + textoRemplazo);
     }
 
     /**
-     * Metodo que concatena el texto 1000 veces y calcula el tiempo que le ha llevado realizar dicho proceso
+     * Método que concatena el texto 1000 veces y calcula el tiempo que le ha llevado realizar dicho proceso
      */
-    private static void concatenar() {
+    public void concatenar() {
         String concatenacion = "";
 
-        //Establecemos un momento de comienzo de operacion que luego restaremos al momento final despues de realizar la operacion para sacar el tiempo total del proceso
+        //Establecemos un momento de comienzo de operación que luego restaremos al momento final después de realizar la operación para sacar el tiempo total del proceso
         long inicio = System.currentTimeMillis();
 
-        for (int i = 0; i < 1500000; i++) {
-            concatenacion.concat(TEXTO);
+        for (int i = 0; i < 1000; i++) {
+            concatenacion.concat(cadena);
         }
 
         long fin = System.currentTimeMillis();
 
         long tiempoTotal = fin - inicio;
 
-        System.out.println(tiempoTotal + "ms");
+        System.out.println("Tiempo total en concatener 1000 el texto: " + tiempoTotal + " ms");
     }
 }
