@@ -16,7 +16,7 @@ public class ItemsSeparator {
     }
 
     /**
-     * Constructor vacio de la clase
+     * Constructor vacío de la clase
      */
     public ItemsSeparator() {
     }
