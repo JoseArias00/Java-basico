@@ -2,19 +2,43 @@ package com.company;
 
 import java.util.*;
 
+import static java.lang.Math.*;
+
 public class Kaprekar {
     private static final int NUMKAPREKAR = 6174;
-    private String número;
+    private int número;
 
     public Kaprekar() {
 
     }
 
-    public Kaprekar(String número) {
+    public Kaprekar(int número) {
         this.número = número;
     }
 
-    public void esVálido() {
+    public boolean esKaprekar() {
+        int cuadrado = (int) pow(número, 2);
+        String aux = String.valueOf(cuadrado);
+        StringBuilder auxPrimeraMitad = new StringBuilder("");
+        StringBuilder auxSegundaMitad = new StringBuilder("");
+        for (int i = 0; i < (aux.length() / 2); i++) {
+            auxPrimeraMitad.append(String.valueOf(aux.charAt(i)));
+        }
+
+        for (int i = (aux.length() / 2); i < aux.length(); i++) {
+            auxSegundaMitad.append(String.valueOf(aux.charAt(i)));
+        }
+
+        int primeraMitad = Integer.valueOf(auxPrimeraMitad.toString());
+        int segundaMitad = Integer.valueOf(auxSegundaMitad.toString());
+
+        int sumaMitades = primeraMitad + segundaMitad;
+
+        return sumaMitades == número;
+    }
+
+
+    /*public void esVálido() {
         //Primer paso: ordenamos los dígitos de mayor a menor y le restamos los dígitos ordenador de menor a mayor
         int descendente = mayorAMenor(número);
         int ascendente = menorAMayor(número);
@@ -38,7 +62,7 @@ public class Kaprekar {
     /**
      * @return true si el número es una excepción y no es un número
      */
-    public boolean esExcepción() {
+    /*public boolean esExcepción() {
         HashMap<Character, Integer> dígitos = new HashMap<>();
 
         //Excepciones: que haya 4 números repetidos
@@ -57,5 +81,5 @@ public class Kaprekar {
         }
 
         return false;
-    }
+    }*/
 }

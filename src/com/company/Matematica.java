@@ -7,8 +7,8 @@ public class Matematica {
     public static void main() {
         System.out.println("Introduzca un número de 4 dígitos (sin símbolo): ");
         Scanner sc = new Scanner(System.in);
-        String dígito = sc.nextLine();
+        int dígito = sc.nextInt();
         Kaprekar kapre = new Kaprekar(dígito);
-        kapre.esVálido();
+        System.out.println("Es kaprekar: " + kapre.esKaprekar());
     }
 }
