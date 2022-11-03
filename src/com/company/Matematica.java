@@ -9,6 +9,7 @@ public class Matematica {
         Scanner sc = new Scanner(System.in);
         int dígito = sc.nextInt();
         Kaprekar kapre = new Kaprekar(dígito);
-        System.out.println("Es kaprekar: " + kapre.esKaprekar());
+        System.out.println("Es número de kaprekar: " + kapre.esKaprekar());
+        System.out.println("Es constante de kaprekar: " + kapre.esVálido());
     }
 }

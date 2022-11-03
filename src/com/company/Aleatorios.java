@@ -19,61 +19,53 @@ import static java.lang.Math.*;
  * @author Jose Maria
  */
 public class Aleatorios {
-    private static final String ERROR = "Lo sentimos,debes introducir un valor entero sin decimales (0-32.767)";
+    public static final String ERROR = "Lo sentimos,debes introducir un valor entero sin decimales (0-32.767)";
 
     /**
      * @throws InputMismatchException Excepción lanzada cuando se introduce un valor distinto a un valor entero
      *                                <p>
      *                                Método main donde recogemos en consola los valores deseados solicitados al cliente
      */
-    public static void main() throws InputMismatchException {
-        int numRectángulos;
-        int numCirculos;
-        int numTriángulos;
-        Scanner sc = new Scanner(System.in);
-
-        //Comprobamos que la entrada sea un int con un try catch y luego que cada valor sea positivo
-        try {
-            System.out.println("Introduce el número de círculos a crear:");
-            numCirculos = sc.nextInt();
-            while (numCirculos < 0) {
-                throw new InputMismatchException();
-
-            }
-
-            System.out.println("Introduce el número de formas rectangulares (se generarán cuadrados y rectángulos de forma aleatoria):");
-            numRectángulos = sc.nextInt();
-            while (numRectángulos < 0) {
-                throw new InputMismatchException();
-
-            }
-
-            System.out.println("Introduce el número de triángulos (se generarán triángulos equiláteros, isósceles y escalenos de forma aleatoria):");
-            numTriángulos = sc.nextInt();
-            while (numTriángulos < 0) {
-                throw new InputMismatchException();
-            }
-
-            //Indicamos por órden el número de figuras a crear de cada tipo
-            if (numCirculos > 0) {
-                generaCirculos(numCirculos);
-            }
-
-            if (numRectángulos > 0) {
-                generaRectángulos(numRectángulos);
-            }
-
-            if (numTriángulos > 0) {
-                generaTriángulos(numTriángulos);
-            }
-        } catch (InputMismatchException e) {
-            System.err.println(ERROR);
-            main();
-        }
-
+    public static void main() {
+        entrada();
 
     }
 
+    private static void entrada(){
+        byte numRectángulos;
+        byte numCirculos = 0;
+        byte numTriángulos;
+        Scanner sc = new Scanner(System.in);
+
+        //Comprobamos que la entrada sea un int con un try catch y luego que cada valor sea positivo
+        System.out.println("Introduce el número de círculos a crear:");
+        try {
+            numCirculos =sc.nextByte();
+        } catch (InputMismatchException e) {
+        }
+
+        /*System.out.println("Introduce el número de formas rectangulares (se generarán cuadrados y rectángulos de forma aleatoria):");
+        numRectángulos = Verificador.verificaEnterosPositivos(sc.nextByte());
+
+
+        System.out.println("Introduce el número de triángulos (se generarán triángulos equiláteros, isósceles y escalenos de forma aleatoria):");
+        numTriángulos = Verificador.verificaEnterosPositivos(sc.nextByte());*/
+
+
+        //Indicamos por órden el número de figuras a crear de cada tipo
+        if (numCirculos > 0) {
+            generaCirculos(numCirculos);
+        }
+
+       /* if (numRectángulos > 0) {
+            generaRectángulos(numRectángulos);
+        }
+
+        if (numTriángulos > 0) {
+            generaTriángulos(numTriángulos);
+        }*/
+
+    }
 
     /**
      * @param cantidad Número de círculos a crear
@@ -118,7 +110,7 @@ public class Aleatorios {
                 System.out.println("---------------Figura---------------\n" + tIsósceles.toString());
             }
             if (cantidad > 0) {
-               numEscalenos = (int) (random() * cantidad + 1);
+                numEscalenos = (int) (random() * cantidad + 1);
 
                 for (int numEscaCreados = 0; numEscaCreados < numEscalenos; numEscaCreados++) {
                     BigDecimal lado1 = BigDecimal.valueOf(random() * 100 + 1);

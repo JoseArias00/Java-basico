@@ -1,95 +1,66 @@
 package com.company;
 
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Scanner;
 
+/**
+ * @author Jose Maria
+ * <p>
+ * Clase destinada al manejo de fechas
+ */
 public class Fechas {
+    private static LocalDate time1;
+    private static LocalDate time2;
+    private static Calendar fecha1 = Calendar.getInstance();
+    private static Calendar fecha2 = Calendar.getInstance();
 
-    /**
-     * @throws ParseException Por usar el cambio de formato
-     */
-    public static void main() throws ParseException {
-        Scanner sc = new Scanner(System.in);
-        String[] fechas;
-        Calendar fecha1 = Calendar.getInstance();
-        Calendar fecha2 = Calendar.getInstance();
+    public static void main() {
+        OperacionesFechas.creaFechas();
 
-        System.out.println("Introduzca las 2 fechas con las que trabajaremos(yyyy/MM/dd: ");
-        System.out.print("Primera fecha");
-        fechas = sc.nextLine().split("/");
-        fecha1.set(Integer.parseInt(fechas[0]), Integer.parseInt(fechas[1]) - 1, Integer.parseInt(fechas[2]));
-
-        System.out.print("Segunda fecha");
-        fechas = sc.nextLine().split("/");
-        fecha2.set(Integer.parseInt(fechas[0]), Integer.parseInt(fechas[1]) - 1, Integer.parseInt(fechas[2]));
-
-
-        diferenciaDias(fecha1, fecha2);
-        numeroDias(fecha1, fecha2);
-        numeroSemana(fecha1, fecha2);
-    }
-
-    /**
-     * @param fecha1 Fecha 1 introducida por el usuario
-     * @param fecha2 Fecha 2 introducida por el usuario
-     *               <p>
-     *               Metodo que calcula la diferencia de dias entre dos fechas
-     */
-    public static int diferenciaDias(Calendar fecha1, Calendar fecha2) {
-        //Vamos a calcular la diferencia de tiempo entre ambas fechas en milisegundos que luego pasaremos a dias
-
-        int milisecondsByDay = 86400000;
-        int dias = (int) ((fecha1.getTime().getTime() - fecha2.getTime().getTime()) / milisecondsByDay);
-
-        //Math.abs es utilizado para indicar la diferencia de dias como valor absoluto
-        System.out.println("Hay una diferencia de: " + Math.abs(dias));
-
-        return Math.abs(dias);
-    }
-
-    public static void inicioFinAnio() {
+        operacionesCalendar();
+        operacionesTime();
 
     }
 
     /**
-     * @param fecha1 Fecha 1 introducida por el usuario
-     * @param fecha2 Fecha 2 introducida por el usuario
-     *               <p>
-     *               Metodo con el que calcularemos el total de dias transcurridos desde el principio de año
+     * Conjunto de operaciones sobre las fechas realizadas con la librería Calendar
      */
-    public static void numeroDias(Calendar fecha1, Calendar fecha2) {
-        //Creamos dos fechas auxiliares en 1 de enero de los anios de las fechas indicadas
-        Calendar fecha1aux = Calendar.getInstance();
-        Calendar fecha2aux = Calendar.getInstance();
-
-
-        fecha1aux.set(fecha1.get(Calendar.YEAR), Calendar.JANUARY, 1);
-        fecha2aux.set(fecha2.get(Calendar.YEAR), Calendar.JANUARY, 1);
-
-        diferenciaDias(fecha1aux, fecha1);
-        diferenciaDias(fecha2aux, fecha2);
+    private static void operacionesCalendar() {
+        OperacionesFechas.diferenciaDias(fecha1, fecha2);
+        OperacionesFechas.numeroDias(fecha1, fecha2);
+        OperacionesFechas.numeroSemana(fecha1, fecha2);
     }
 
     /**
-     * @param fecha1 Fecha 1 introducida por el usuario
-     * @param fecha2 Fecha 2 introducida por el usuario
-     *               Metodo encargado de mostrar por pantalla el numero de la semana de la semana indicada
+     * Conjunto de operaciones sobre las fechas realizadas con la librería Java.Time
      */
-    public static void numeroSemana(Calendar fecha1, Calendar fecha2) {
-        //Comprobamos que esa semana no comience en el anio pasado para evitar que nos indique la ultima semana del anio pasado
-        if (fecha1.get(Calendar.MONTH) == 0 && fecha1.get((Calendar.WEEK_OF_YEAR)) > 50) {
-            System.out.println("Es la semana: 1");
-        } else {
-            System.out.println("Es la semana: " + fecha1.get(Calendar.WEEK_OF_YEAR) + 1);
-        }
+    private static void operacionesTime() {
+        OperacionesFechas.inicioAnio(time1);
+        OperacionesFechas.inicioAnio(time2);
+        OperacionesFechas.finAnio(time1);
+        OperacionesFechas.finAnio(time2);
+        OperacionesFechas.diferenciaDiasTime(time1, time2);
+        OperacionesFechas.diasDelAnio(time1);
+        OperacionesFechas.diasDelAnio(time2);
+        OperacionesFechas.numeroSemana(time1);
+        OperacionesFechas.numeroSemana(time2);
 
-        if (fecha2.get(Calendar.MONTH) == 0 && fecha2.get((Calendar.WEEK_OF_YEAR)) > 50) {
-            System.out.println("Es la semana: 1");
-        } else {
-            System.out.println("Es la semana: " + (fecha2.get(Calendar.WEEK_OF_YEAR) + 1));
-        }
     }
 
+    public static LocalDate getTime1() {
+        return time1;
+    }
 
+    public static void setTime1(LocalDate time1) {
+        Fechas.time1 = time1;
+    }
+
+    public static LocalDate getTime2() {
+        return time2;
+    }
+
+    public static void setTime2(LocalDate time2) {
+        Fechas.time2 = time2;
+    }
 }

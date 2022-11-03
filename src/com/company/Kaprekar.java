@@ -16,6 +16,11 @@ public class Kaprekar {
         this.número = número;
     }
 
+    /**
+     * @return Si el número es de Kaprekar
+     * <p>
+     * Método encargado de devolver si el número pasado es de Kaprekar con un true:si o un false:no
+     */
     public boolean esKaprekar() {
         int cuadrado = (int) pow(número, 2);
         String aux = String.valueOf(cuadrado);
@@ -38,39 +43,71 @@ public class Kaprekar {
     }
 
 
-    /*public void esVálido() {
+    /**
+     * @return verdadero o falso según si el número introducido es una constante de Kaprekar
+     * <p>
+     * Método encargado de devolver 'true:si' o 'false:no' por pantalla si el número es una constante de Kaprekar
+     */
+    public boolean esVálido() {
         //Primer paso: ordenamos los dígitos de mayor a menor y le restamos los dígitos ordenador de menor a mayor
+        int contador = 0;
+        int resta;
         int descendente = mayorAMenor(número);
         int ascendente = menorAMayor(número);
-        int resta = descendente - ascendente;
+
+        do {
+            resta = descendente - ascendente;
+            descendente = mayorAMenor(resta);
+            ascendente = menorAMayor(resta);
+            contador++;
+        } while (resta != NUMKAPREKAR && contador < 7);
+
+        return resta == NUMKAPREKAR;
     }
 
-    public static int mayorAMenor(String número) {
-        List<Integer> dígitos = Arrays.asList(Character.getNumericValue(número.charAt(0)), Character.getNumericValue(número.charAt(1)), Character.getNumericValue(número.charAt(2)), Character.getNumericValue(número.charAt(3)));
+    /**
+     * @param número Un número que queremos ordenar de mayor a menor
+     * @return El número ordenado de mayor a menos
+     * <p>
+     * Método encargado de ordenar un número de mayor a menor y devolver ese número ya ordenado
+     */
+    public static int mayorAMenor(int número) {
+        String aux = String.valueOf(número);
+        List<Integer> dígitos = Arrays.asList(Character.getNumericValue(aux.charAt(0)), Character.getNumericValue(aux.charAt(1)), Character.getNumericValue(aux.charAt(2)), Character.getNumericValue(aux.charAt(3)));
         dígitos.sort((n1, n2) -> n2.compareTo(n1));
         String conversor = String.valueOf(dígitos.get(0)) + String.valueOf(dígitos.get(1)) + String.valueOf(dígitos.get(2)) + String.valueOf(dígitos.get(3));
         return Integer.valueOf(conversor);
     }
 
-    public static int menorAMayor(String número) {
-        List<Integer> dígitos = Arrays.asList(Character.getNumericValue(número.charAt(0)), Character.getNumericValue(número.charAt(1)), Character.getNumericValue(número.charAt(2)), Character.getNumericValue(número.charAt(3)));
+    /**
+     * @param número Un número que queremos ordenar de menor a mayor
+     * @return El número ordenado de menor a mayor
+     * <p>
+     * Método encargado de ordenar un número de menor a mayor y devolver ese número ya ordenado
+     */
+    public static int menorAMayor(int número) {
+        String aux = String.valueOf(número);
+        List<Integer> dígitos = Arrays.asList(Character.getNumericValue(aux.charAt(0)), Character.getNumericValue(aux.charAt(1)), Character.getNumericValue(aux.charAt(2)), Character.getNumericValue(aux.charAt(3)));
         dígitos.sort((n1, n2) -> n1.compareTo(n2));
         String conversor = String.valueOf(dígitos.get(0)) + String.valueOf(dígitos.get(1)) + String.valueOf(dígitos.get(2)) + String.valueOf(dígitos.get(3));
         return Integer.valueOf(conversor);
     }
 
     /**
-     * @return true si el número es una excepción y no es un número
+     * @return true si el número es una excepción
+     * <p>
+     * Método encargado de comprobar si el número pasado es una excepción y no será una constante de Kaprekar aún teniendo 4 cifras
      */
-    /*public boolean esExcepción() {
+    public boolean esExcepción() {
         HashMap<Character, Integer> dígitos = new HashMap<>();
+        String aux = String.valueOf(número);
 
         //Excepciones: que haya 4 números repetidos
-        for (int i = 0; i < número.length(); i++) {
-            if (!dígitos.containsKey(número.charAt(i))) {
-                dígitos.put(número.charAt(i), 1);
+        for (int i = 0; i < aux.length(); i++) {
+            if (!dígitos.containsKey(aux.charAt(i))) {
+                dígitos.put(aux.charAt(i), 1);
             } else {
-                dígitos.replace(número.charAt(i), dígitos.get(número.charAt(i)), (dígitos.get(número.charAt(i)) + 1));
+                dígitos.replace(aux.charAt(i), dígitos.get(aux.charAt(i)), (dígitos.get(aux.charAt(i)) + 1));
             }
         }
 
@@ -81,5 +118,5 @@ public class Kaprekar {
         }
 
         return false;
-    }*/
+    }
 }

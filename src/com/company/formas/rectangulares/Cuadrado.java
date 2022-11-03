@@ -11,15 +11,22 @@ import java.math.RoundingMode;
  * @author Jose Maria
  */
 public class Cuadrado extends Rectangular {
-    private static final int LADOSIGUALES = 4;
-    private BigDecimal lados;
+    private static final int LADOS_IGUALES = 4;
+
+    /**
+     *
+     */
+    private BigDecimal longitudLado;
 
     public Cuadrado() {
     }
 
-    public Cuadrado(BigDecimal lados) {
-        super(LADOSIGUALES);
-        this.lados = lados;
+    /**
+     * @param longitudLado
+     */
+    public Cuadrado(BigDecimal longitudLado) {
+        super(LADOS_IGUALES);
+        this.longitudLado = longitudLado;
     }
 
     /**
@@ -29,7 +36,7 @@ public class Cuadrado extends Rectangular {
      */
     @Override
     public BigDecimal área() {
-        return lados.multiply(lados);
+        return longitudLado.multiply(longitudLado);
     }
 
 
@@ -39,8 +46,8 @@ public class Cuadrado extends Rectangular {
      * Método encargado de concatenar a la cadena de la clase FormasGeométricas los valores del cuadrado generado
      */
     public String toString() {
-        return super.toString().concat("---Cuadrado---\nLados: " + lados.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +
-                " cm\nÁrea: " + área().setScale(Main.REDONDEO, RoundingMode.HALF_UP) + " cm");
+        return super.toString() + "---Cuadrado---\nLados: " + longitudLado.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +
+                " cm\nÁrea: " + área().setScale(Main.REDONDEO, RoundingMode.HALF_UP) + " cm";
     }
 
 }

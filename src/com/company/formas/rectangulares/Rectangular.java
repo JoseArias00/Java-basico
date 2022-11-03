@@ -10,19 +10,19 @@ import java.math.BigDecimal;
  * @author Jose Maria
  */
 public abstract class Rectangular extends FormasGeométricas {
-    private static final int NUMLADOS = 4;
+    private static final int NUMERO_LADOS = 4;
     private int ladosIguales;
 
     public Rectangular() {
     }
 
     public Rectangular(int ladosIguales) {
-        super(NUMLADOS);
+        super(NUMERO_LADOS);
         this.ladosIguales = ladosIguales;
     }
 
     /**
-     * @return La cadena a imprimir en pantalla con los valores devueltos de la cadena toString de la clase FormasGeóemtricas
+     * @return La cadena a imprimir en pantalla con los valores devueltos de la cadena toString de la clase FormasGeométricas
      * <p>
      * Método encargado de devolver la cadena de FormasGeométricas
      */
