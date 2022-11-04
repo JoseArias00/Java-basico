@@ -11,86 +11,84 @@ import static java.util.Calendar.*;
  * <p>
  * Utilería de métodos para el manejo de fechas
  */
-public class OperacionesFechas {
+public class UtileríaFechas {
 
     /**
-     * @param fecha1 Fecha 1 introducida por el usuario
-     * @param fecha2 Fecha 2 introducida por el usuario
-     *               <p>
-     *               Método que calcula la diferencia de dias entre dos fechas
+     * @param fecha1 Fecha 1 introducida por el usuario con la que operar
+     * @param fecha2 Fecha 2 introducida por el usuario con la que operar
+     * @return El número de diferencia de dias entre las dos fechas pasadas por parámetros
+     * @throws IllegalArgumentException Ocurre cuando una o ambas fechas son erróneas
      */
-    public static int diferenciaDias(Calendar fecha1, Calendar fecha2) {
-        //Vamos a calcular la diferencia de tiempo entre ambas fechas en milisegundos que luego pasaremos a dias
+    public static int diferenciaDias(Calendar fecha1, Calendar fecha2) throws IllegalArgumentException {
+        if (fecha1 == null || fecha1.get(MONTH) > 12 || fecha1.get(DAY_OF_MONTH) > 31) {
+            throw new IllegalArgumentException("Parámetro 1 incorrecto");
+        }
 
+        if (fecha2 == null || fecha2.get(MONTH) > 12 || fecha2.get(DAY_OF_MONTH) > 31) {
+            throw new IllegalArgumentException("Parámetro 2 incorrecto");
+        }
+
+        //Vamos a calcular la diferencia de tiempo entre ambas fechas en milisegundos que luego pasaremos a dias
         int milisecondsByDay = 86400000;
         int dias = (int) ((fecha1.getTime().getTime() - fecha2.getTime().getTime()) / milisecondsByDay);
 
         //Math.abs es utilizado para indicar la diferencia de dias como valor absoluto
-        System.out.println("Hay una diferencia de: " + Math.abs(dias));
-
         return Math.abs(dias);
     }
 
     /**
-     * @param fecha1 Fecha 1 introducida por el usuario
-     * @param fecha2 Fecha 2 introducida por el usuario
-     *               <p>
-     *               Método con el que calcularemos el total de dias transcurridos desde el principio de año
+     * @param fecha Fecha introducida por el usuario con la que operar
+     * @return El número de dias transcurridos en la fecha respecto al comienzo del año
+     * @throws IllegalArgumentException Ocurre cuando la fecha pasada por parámetro es errónea
      */
-    public static void numeroDias(Calendar fecha1, Calendar fecha2) {
+    public static short numeroDiasTranscurridos(final Calendar fecha) throws IllegalArgumentException {
+        if (fecha == null || fecha.get(MONTH) > 12 || fecha.get(DAY_OF_MONTH) > 31) {
+            throw new IllegalArgumentException("Parámetro incorrecto");
+        }
         //Creamos dos fechas auxiliares en 1 de enero de los años de las fechas indicadas
-        Calendar fecha1aux = getInstance();
-        Calendar fecha2aux = getInstance();
+        Calendar fechaAux = getInstance();
 
+        fechaAux.set(fecha.get(YEAR), Calendar.JANUARY, 1);
 
-        fecha1aux.set(fecha1.get(YEAR), Calendar.JANUARY, 1);
-        fecha2aux.set(fecha2.get(YEAR), Calendar.JANUARY, 1);
-
-        diferenciaDias(fecha1aux, fecha1);
-        diferenciaDias(fecha2aux, fecha2);
+        return (short) diferenciaDias(fechaAux, fecha);
     }
 
     /**
-     * @param fecha1 Fecha 1 introducida por el usuario
-     * @param fecha2 Fecha 2 introducida por el usuario
-     *               Método encargado de mostrar por pantalla el número de la semana de la semana indicada
+     * @param fecha Fecha introducida por el usuario con la que operar
+     * @return El número de la semana del año al que corresponde esa fecha
+     * @throws IllegalArgumentException Ocurre cuando la fecha pasada por parámetro es errónea
      */
-    public static void numeroSemana(Calendar fecha1, Calendar fecha2) {
-        //Comprobamos que esa semana no comience en el año pasado para evitar que nos indique la última semana del año pasado
-        if (fecha1.get(MONTH) == 0 && fecha1.get((WEEK_OF_YEAR)) > 50) {
-            System.out.println("Es la semana: 1");
-        } else {
-            System.out.println("Es la semana: " + fecha1.get(WEEK_OF_YEAR) + 1);
+    public static byte numeroSemana(final Calendar fecha) throws IllegalArgumentException {
+        if (fecha == null || fecha.get(MONTH) > 12 || fecha.get(DAY_OF_MONTH) > 31) {
+            throw new IllegalArgumentException("Parámetro incorrecto");
         }
 
-        if (fecha2.get(MONTH) == 0 && fecha2.get((WEEK_OF_YEAR)) > 50) {
-            System.out.println("Es la semana: 1");
-        } else {
-            System.out.println("Es la semana: " + (fecha2.get(WEEK_OF_YEAR) + 1));
-        }
+        return (byte) fecha.getWeekYear();
     }
 
     /**
      * @param fecha Fecha sobre la que operaremos para conocer su primer día del año
      * @return Fecha del primer día del año de la fecha pasada por parámetros
+     * @throws IllegalArgumentException Ocurre cuando la fecha pasada por parámetro es errónea
      */
-    public static LocalDate inicioAnio(LocalDate fecha) {
+    public static LocalDate inicioAnio(final LocalDate fecha) throws IllegalArgumentException {
         if (fecha == null || fecha.getMonthValue() > 12 || fecha.getDayOfMonth() > 31) {
             throw new IllegalArgumentException("Parámetro incorrecto");
         }
-        System.out.println("Fecha de inicio de año: " + LocalDate.of(fecha.getYear(), Month.JANUARY, 1));
+
         return LocalDate.of(fecha.getYear(), Month.JANUARY, 1);
     }
 
     /**
      * @param fecha Fecha sobre la que operaremos para conocer su último día del año
      * @return Fecha del último día del año de la fecha pasada por parámetros
+     * @throws IllegalArgumentException Ocurre cuando la fecha pasada por parámetro es errónea
      */
-    public static LocalDate finAnio(LocalDate fecha) {
+    public static LocalDate finAnio(final LocalDate fecha) throws IllegalArgumentException {
         if (fecha == null || fecha.getMonthValue() > 12 || fecha.getDayOfMonth() > 31) {
             throw new IllegalArgumentException("Parámetro incorrecto");
         }
-        System.out.println("Fecha de fin de año: " + LocalDate.of(fecha.getYear(), Month.JANUARY, 31));
+
         return LocalDate.of(fecha.getYear(), Month.DECEMBER, 31);
     }
 
@@ -98,15 +96,17 @@ public class OperacionesFechas {
      * @param fecha1 Fecha 1 a comparar
      * @param fecha2 Fecha 2 a comparar
      * @return El periodo de diferencia entre ambas fechas
+     * @throws IllegalArgumentException Ocurre cuando una o ambas fechas pasadas por parámetros es errónea
      */
-    public static Period diferenciaDiasTime(LocalDate fecha1, LocalDate fecha2) {
-        if (fecha1 == null || fecha1.getMonthValue() > 12 || fecha1.getDayOfMonth() > 31 || fecha2 == null || fecha2.getMonthValue() > 12 || fecha2.getDayOfMonth() > 31) {
-            throw new IllegalArgumentException("Parámetro incorrecto");
+    public static Period diferenciaDiasTime(final LocalDate fecha1, final LocalDate fecha2) throws IllegalArgumentException {
+        if (fecha1 == null || fecha1.getMonthValue() > 12 || fecha1.getDayOfMonth() > 31) {
+            throw new IllegalArgumentException("Parámetro 1 incorrecto");
         }
-        Period diferencia = Period.between(fecha1, fecha2);
+        if (fecha2 == null || fecha2.getMonthValue() > 12 || fecha2.getDayOfMonth() > 31) {
+            throw new IllegalArgumentException("Parámetro 2 incorrecto");
+        }
 
-        String formatoDate = Math.abs(diferencia.getYears()) + " años, " + Math.abs(diferencia.getMonths()) + " meses, " + Math.abs(diferencia.getDays()) + " día(s).";
-        System.out.println("Han pasado: " + formatoDate + " días.");
+        Period diferencia = Period.between(fecha1, fecha2);
 
         return diferencia;
     }
@@ -114,8 +114,9 @@ public class OperacionesFechas {
     /**
      * @param fechaLocal Fecha sobre la que opera el método
      * @return Número de dias que tiene el año de la fecha pasada como parámetro
+     * @throws IllegalArgumentException Ocurre cuando la fecha pasada por parámetro es errónea
      */
-    public static int diasDelAnio(LocalDate fechaLocal) {
+    public static int diasDelAnio(final LocalDate fechaLocal) throws IllegalArgumentException {
         if (fechaLocal == null || fechaLocal.getMonthValue() > 12 || fechaLocal.getDayOfMonth() > 31) {
             throw new IllegalArgumentException("Parámetro incorrecto");
         }
@@ -130,7 +131,7 @@ public class OperacionesFechas {
      *                                  <p>
      *                                  Método realizado comenzando a contar las semanas por el primer lunes del año
      */
-    public static int numeroSemana(LocalDate fecha) throws IllegalArgumentException {
+    public static int numeroSemanaEspana(final LocalDate fecha) throws IllegalArgumentException {
         if (fecha == null || fecha.getMonthValue() > 12 || fecha.getDayOfMonth() > 31) {
             throw new IllegalArgumentException("Parámetro incorrecto");
         }
@@ -146,11 +147,7 @@ public class OperacionesFechas {
 
         diferenciaDiasInicioAnioAhora = fecha.getDayOfYear() - inicioAnio.getDayOfYear();
 
-        if (diferenciaDiasInicioAnioAhora < 0) {
-            numeroSemanas = 0;
-        } else {
-            numeroSemanas = diferenciaDiasInicioAnioAhora / 7 + 1;
-        }
+        numeroSemanas = (diferenciaDiasInicioAnioAhora < 0) ? 0 : (diferenciaDiasInicioAnioAhora / 7 + 1);
 
         System.out.println("Es la semana número: " + numeroSemanas);
         return numeroSemanas;
@@ -163,7 +160,7 @@ public class OperacionesFechas {
      *                                  <p>
      *                                  Método realizado comenzando a contar las semanas por el día 1 de enero (independientemente del dia de la semana que sea)
      */
-    public static int numeroSemana2(LocalDate fecha) throws IllegalArgumentException {
+    public static int numeroSemanaEuropa(final LocalDate fecha) throws IllegalArgumentException {
         if (fecha == null || fecha.getMonthValue() > 12 || fecha.getDayOfMonth() > 31) {
             throw new IllegalArgumentException("Parámetro incorrecto");
         }
@@ -205,10 +202,11 @@ public class OperacionesFechas {
         if (fechas.length != 3) {
             throw new ArrayIndexOutOfBoundsException("La fecha no tiene todos los datos solicitados");
         }
-        if (Integer.parseInt(fechas[2]) > 31) {
-            throw new DateTimeException("La fecha existe en el calendario gregoriano");
+        if (Integer.parseInt(fechas[2]) > 31 || Integer.parseInt(fechas[2]) < 1) {
+            throw new DateTimeException("La fecha no existe en el calendario gregoriano");
         }
         fecha1.set(Integer.parseInt(fechas[0]), Integer.parseInt(fechas[1]) - 1, Integer.parseInt(fechas[2]));
+        Fechas.setFecha1(fecha1);
         Fechas.setTime1(LocalDate.of(Integer.parseInt(fechas[0]), Integer.parseInt(fechas[1]), Integer.parseInt(fechas[2])));
 
         //Creamos la segunda fecha
@@ -217,12 +215,37 @@ public class OperacionesFechas {
         if (fechas.length != 3) {
             throw new ArrayIndexOutOfBoundsException("La fecha no tiene todos los datos solicitados");
         }
-        if (Integer.parseInt(fechas[2]) > 31) {
-            throw new DateTimeException("La fecha existe en el calendario gregoriano");
+        if (Integer.parseInt(fechas[2]) > 31 || Integer.parseInt(fechas[2]) < 1) {
+            throw new DateTimeException("La fecha no existe en el calendario gregoriano");
         }
         fecha2.set(Integer.parseInt(fechas[0]), Integer.parseInt(fechas[1]) - 1, Integer.parseInt(fechas[2]));
+        Fechas.setFecha2(fecha2);
         Fechas.setTime2(LocalDate.of(Integer.parseInt(fechas[0]), Integer.parseInt(fechas[1]), Integer.parseInt(fechas[2])));
+    }
 
+    /**
+     * @param fecha La fecha a la que daremos formato yyyy/MM/dd
+     * @return La fecha con el formato dado
+     * @throws IllegalArgumentException Ocurre cuando se pasa con una fecha por parámetro errónea
+     */
+    public static String FormatoFecha(final Calendar fecha) throws IllegalArgumentException {
+        if (fecha == null || fecha.get(MONTH) > 12 || fecha.get(DAY_OF_MONTH) > 31) {
+            throw new IllegalArgumentException("Parámetro incorrecto");
+        }
 
+        return fecha.get(YEAR) + "/" + (fecha.get(MONTH) + 1) + "/" + fecha.get(DAY_OF_MONTH);
+    }
+
+    /**
+     * @param periodo Un periodo de tiempo entre dos fechas
+     * @return El periodo con el formato dado
+     * @throws IllegalArgumentException Ocurre cuando se pasa un periodo por parámetro erróneo
+     */
+    public static String FormatoPeriodo(final Period periodo) throws IllegalArgumentException {
+        if (periodo == null || periodo.getMonths() > 12 || periodo.getYears() > 31) {
+            throw new IllegalArgumentException("Parámetro incorrecto");
+        }
+
+        return Math.abs(periodo.getYears()) + " años, " + Math.abs(periodo.getMonths()) + " meses, " + Math.abs(periodo.getDays()) + " día(s).";
     }
 }
