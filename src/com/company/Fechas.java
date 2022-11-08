@@ -20,7 +20,7 @@ public class Fechas {
     public static void main() {
         creaFechas();
 
-        //operacionesCalendar();
+        operacionesCalendar();
         operacionesTime();
 
     }
@@ -29,7 +29,7 @@ public class Fechas {
      * Conjunto de operaciones sobre las fechas, realizadas con la librería Calendar
      */
     private static void operacionesCalendar() {
-        System.out.println("Operaciones realizadas con Calendar: ");
+        System.out.println("---------------Operaciones realizadas con Calendar---------------");
 
         //Imprimo la diferencia de días entre dos fechas
         System.out.println("La diferencia de días entre la fecha " + FormatoFecha(fecha1) + " y la fecha " + FormatoFecha(fecha2) + " es de " + diferenciaDias(fecha1,fecha2) + " día(s)");
@@ -39,8 +39,8 @@ public class Fechas {
         System.out.println("El número de dias transcurridos entre el comienzo del año y la fecha " + FormatoFecha(fecha2) + " es: " + numeroDiasTranscurridos(fecha2));
 
         //Imprimo el número de la semana en la que está cada fecha
-        System.out.println("En la fecha " + FormatoFecha(fecha1) + " estamos en la semana número " + numeroSemana(fecha1));
-        System.out.println("En la fecha " + FormatoFecha(fecha2) + " estamos en la semana número " + numeroSemana(fecha2));
+        System.out.println((numeroSemana(fecha1) >= 52 && fecha1.get(Calendar.MONTH) == 0 ) ? "En la fecha " + FormatoFecha(fecha1) + " estamos en la semana número " + numeroSemana(fecha1) + " del año pasado." : "En la fecha " + FormatoFecha(fecha1) + " estamos en la semana número " + numeroSemana(fecha1)) ;
+        System.out.println((numeroSemana(fecha2) >= 52 && fecha2.get(Calendar.MONTH) == 0 ) ? "En la fecha " + FormatoFecha(fecha2) + " estamos en la semana número " + numeroSemana(fecha2) + " del año pasado." : "En la fecha " + FormatoFecha(fecha2) + " estamos en la semana número " + numeroSemana(fecha2)) ;
 
     }
 
@@ -48,7 +48,7 @@ public class Fechas {
      * Conjunto de operaciones sobre las fechas, realizadas con la librería Java.Time
      */
     private static void operacionesTime() {
-        System.out.println("Operaciones realizadas con Time: ");
+        System.out.println("-----------------Operaciones realizadas con Time-----------------");
 
         //Imprimo el comienzo y final de cada fecha introducida
         System.out.println("El inicio del año de la fecha " + time1 + " es: " + inicioAnio(time1) + "(" + inicioAnio(time1).getDayOfWeek() + ")");
@@ -57,15 +57,16 @@ public class Fechas {
         System.out.println("El inicio del año de la fecha " + time2 + " es: " + inicioAnio(time2) + "(" + inicioAnio(time2).getDayOfWeek() + ")");
         System.out.println("El fin del año de la fecha " + time2 + " es: " + finAnio(time2) + "(" + finAnio(time2).getDayOfWeek() + ")");
 
+        //Imprimo la diferencia de días entre las dos fechas introducidas
         System.out.println("La diferencia de días entre la fecha " + time1 + " y la fecha " + time2 + " es de: " + FormatoPeriodo(diferenciaDiasTime(time1,time2)) + " día(s)");
-        /*inicioAnio(time2);
-        finAnio(time1);
-        finAnio(time2);
-        diferenciaDiasTime(time1, time2);
-        diasDelAnio(time1);
-        diasDelAnio(time2);
-        numeroSemanaEspana(time1);
-        numeroSemanaEspana(time2);*/
+
+        //Imprimo los dias transcurridos desde el comienzo del año para ambas fechas
+        System.out.println("Han pasado " + diasDelAnio(time1) + " desde el comienzo del año en la fecha " + time1);
+        System.out.println("Han pasado " + diasDelAnio(time2) + " desde el comienzo del año en la fecha " + time2);
+
+        //Imprimo la semana del año en la que está cada fecha
+        System.out.println("Han pasado " + numeroSemanaEspana(time1) + " semanas desde el comienzo del año en la fecha " + time1);
+        System.out.println("Han pasado " + numeroSemanaEspana(time2) + " semanas desde el comienzo del año en la fecha " + time2);
 
     }
 

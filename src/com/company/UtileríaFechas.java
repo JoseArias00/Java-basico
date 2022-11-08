@@ -13,6 +13,8 @@ import static java.util.Calendar.*;
  */
 public class UtileríaFechas {
 
+    private static Calendar fecha;
+
     /**
      * @param fecha1 Fecha 1 introducida por el usuario con la que operar
      * @param fecha2 Fecha 2 introducida por el usuario con la que operar
@@ -63,7 +65,7 @@ public class UtileríaFechas {
             throw new IllegalArgumentException("Parámetro incorrecto");
         }
 
-        return (byte) fecha.getWeekYear();
+        return (byte) fecha.get(WEEK_OF_YEAR);
     }
 
     /**
@@ -116,12 +118,12 @@ public class UtileríaFechas {
      * @return Número de dias que tiene el año de la fecha pasada como parámetro
      * @throws IllegalArgumentException Ocurre cuando la fecha pasada por parámetro es errónea
      */
-    public static int diasDelAnio(final LocalDate fechaLocal) throws IllegalArgumentException {
+    public static short diasDelAnio(final LocalDate fechaLocal) throws IllegalArgumentException {
         if (fechaLocal == null || fechaLocal.getMonthValue() > 12 || fechaLocal.getDayOfMonth() > 31) {
             throw new IllegalArgumentException("Parámetro incorrecto");
         }
-        System.out.println("Este año tiene: " + fechaLocal.lengthOfYear() + " días.");
-        return fechaLocal.lengthOfYear();
+
+        return (short) fechaLocal.lengthOfYear();
     }
 
     /**
@@ -131,7 +133,7 @@ public class UtileríaFechas {
      *                                  <p>
      *                                  Método realizado comenzando a contar las semanas por el primer lunes del año
      */
-    public static int numeroSemanaEspana(final LocalDate fecha) throws IllegalArgumentException {
+    public static byte numeroSemanaEspana(final LocalDate fecha) throws IllegalArgumentException {
         if (fecha == null || fecha.getMonthValue() > 12 || fecha.getDayOfMonth() > 31) {
             throw new IllegalArgumentException("Parámetro incorrecto");
         }
@@ -149,8 +151,7 @@ public class UtileríaFechas {
 
         numeroSemanas = (diferenciaDiasInicioAnioAhora < 0) ? 0 : (diferenciaDiasInicioAnioAhora / 7 + 1);
 
-        System.out.println("Es la semana número: " + numeroSemanas);
-        return numeroSemanas;
+        return (byte) numeroSemanas;
     }
 
     /**
@@ -160,7 +161,7 @@ public class UtileríaFechas {
      *                                  <p>
      *                                  Método realizado comenzando a contar las semanas por el día 1 de enero (independientemente del dia de la semana que sea)
      */
-    public static int numeroSemanaEuropa(final LocalDate fecha) throws IllegalArgumentException {
+    public static byte numeroSemanaEuropa(final LocalDate fecha) throws IllegalArgumentException {
         if (fecha == null || fecha.getMonthValue() > 12 || fecha.getDayOfMonth() > 31) {
             throw new IllegalArgumentException("Parámetro incorrecto");
         }
@@ -179,8 +180,7 @@ public class UtileríaFechas {
             numeroSemanas++;
         }
 
-        System.out.println("Es la semana número: " + numeroSemanas);
-        return numeroSemanas;
+        return (byte) numeroSemanas;
     }
 
     /**
@@ -246,6 +246,6 @@ public class UtileríaFechas {
             throw new IllegalArgumentException("Parámetro incorrecto");
         }
 
-        return Math.abs(periodo.getYears()) + " años, " + Math.abs(periodo.getMonths()) + " meses, " + Math.abs(periodo.getDays()) + " día(s).";
+        return Math.abs(periodo.getYears()) + " años, " + Math.abs(periodo.getMonths()) + " mes(es), " + Math.abs(periodo.getDays()) + " día(s).";
     }
 }
