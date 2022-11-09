@@ -7,13 +7,13 @@ import java.math.BigDecimal;
  *
  * @author Jose Maria
  */
-public abstract class FormasGeométricas {
+public abstract class FormasGeometricas {
     private int numLados;
 
-    protected FormasGeométricas() {
+    protected FormasGeometricas() {
     }
 
-    protected FormasGeométricas(int numLados) {
+    protected FormasGeometricas(int numLados) {
         this.numLados = numLados;
     }
 

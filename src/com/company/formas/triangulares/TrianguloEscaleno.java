@@ -6,21 +6,21 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * Esta clase hereda de la clase Triangular y es una clase con el objeto de tipo TriánguloEscaleno
+ * Esta clase hereda de la clase Triangular y es una clase con el objeto de tipo TrianguloEscaleno
  *
  * @author Jose Maria
  */
-public class TriánguloEscaleno extends Triangular {
+public class TrianguloEscaleno extends Triangular {
     private static final int LADOSIGUALES = 2;
     private BigDecimal lado1;
     private BigDecimal lado2;
     private BigDecimal lado3;
 
 
-    public TriánguloEscaleno() {
+    public TrianguloEscaleno() {
     }
 
-    public TriánguloEscaleno(BigDecimal lado1, BigDecimal lado2, BigDecimal lado3) {
+    public TrianguloEscaleno(BigDecimal lado1, BigDecimal lado2, BigDecimal lado3) {
         super(LADOSIGUALES);
         this.lado1 = lado1;
         this.lado2 = lado2;
@@ -44,7 +44,7 @@ public class TriánguloEscaleno extends Triangular {
     /**
      * @return La cadena a imprimir en pantalla con los valores del triángulo escaleno
      * <p>
-     * Método encargado de concatenar a la cadena de la clase FormasGeométricas los valores del triángulo generado
+     * Método encargado de concatenar a la cadena de la clase FormasGeometricas los valores del triángulo generado
      */
     public String toString() {
         return super.toString().concat("---Triángulo Escaleno---\nLado1: " + lado1.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +

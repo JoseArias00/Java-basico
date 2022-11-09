@@ -6,18 +6,18 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * Esta clase hereda de la clase Triangular y es una clase con el objeto de tipo TriánguloEquilátero
+ * Esta clase hereda de la clase Triangular y es una clase con el objeto de tipo TrianguloEquilatero
  *
  * @author Jose Maria
  */
-public class TriánguloEquilátero extends Triangular {
+public class TrianguloEquilatero extends Triangular {
     private static final int LADOSIGUALES = 3;
     private BigDecimal lados;
 
-    public TriánguloEquilátero() {
+    public TrianguloEquilatero() {
     }
 
-    public TriánguloEquilátero(BigDecimal lados) {
+    public TrianguloEquilatero(BigDecimal lados) {
         super(LADOSIGUALES);
         this.lados = lados;
     }
@@ -35,7 +35,7 @@ public class TriánguloEquilátero extends Triangular {
     /**
      * @return La cadena a imprimir en pantalla con los valores del triángulo equilátero
      * <p>
-     * Método encargado de concatenar a la cadena de la clase FormasGeométricas los valores del triángulo generado
+     * Método encargado de concatenar a la cadena de la clase FormasGeometricas los valores del triángulo generado
      */
     public String toString() {
         return super.toString().concat("---Triángulo Equilátero---\nLados: " + lados.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +

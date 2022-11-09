@@ -11,7 +11,7 @@ import static java.util.Calendar.*;
  * <p>
  * Utilería de métodos para el manejo de fechas
  */
-public class UtileríaFechas {
+public class UtileriaFechas {
 
     private static Calendar fecha;
 

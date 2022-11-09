@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 
-public class Círculo extends FormasGeométricas {
+public class Circulo extends FormasGeometricas {
     private static final int NUMLADOS = 0;
     private static final BigDecimal PI = BigDecimal.valueOf(Math.PI);
     private BigDecimal radio;
@@ -14,10 +14,10 @@ public class Círculo extends FormasGeométricas {
     private BigDecimal circunferencia;
     private BigDecimal área;
 
-    public Círculo() {
+    public Circulo() {
     }
 
-    public Círculo(BigDecimal radio) {
+    public Circulo(BigDecimal radio) {
         super(NUMLADOS);
         this.radio = radio;
     }
@@ -38,7 +38,7 @@ public class Círculo extends FormasGeométricas {
     /**
      * @return La cadena a imprimir en pantalla con los valores del círculo
      * <p>
-     * Método encargado de concatenar los valores de cada círculo creado con la cadena inicial de la clase FormasGeométricas para distinguir cada figura
+     * Método encargado de concatenar los valores de cada círculo creado con la cadena inicial de la clase FormasGeometricas para distinguir cada figura
      */
     public String toString() {
         return super.toString().concat("---Círculo---\nRadio: " + radio.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +

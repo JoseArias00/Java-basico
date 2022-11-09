@@ -3,7 +3,7 @@ package com.company;
 import java.time.LocalDate;
 import java.util.Calendar;
 
-import static com.company.UtileríaFechas.*;
+import static com.company.UtileriaFechas.*;
 
 /**
  * @author Jose Maria

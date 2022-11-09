@@ -1,11 +1,11 @@
 package com.company;
 
-import com.company.formas.Círculo;
+import com.company.formas.Circulo;
 import com.company.formas.rectangulares.Cuadrado;
-import com.company.formas.rectangulares.Rectángulo;
-import com.company.formas.triangulares.TriánguloEquilátero;
-import com.company.formas.triangulares.TriánguloEscaleno;
-import com.company.formas.triangulares.TriánguloIsósceles;
+import com.company.formas.rectangulares.Rectangulo;
+import com.company.formas.triangulares.TrianguloEquilatero;
+import com.company.formas.triangulares.TrianguloEscaleno;
+import com.company.formas.triangulares.TrianguloIsosceles;
 
 import java.math.BigDecimal;
 import java.util.InputMismatchException;
@@ -75,7 +75,7 @@ public class Aleatorios {
     private static void generaCirculos(int cantidad) {
         for (int círculosCreados = 0; círculosCreados < cantidad; círculosCreados++) {
             BigDecimal radio = BigDecimal.valueOf(random() * 100 + 1);
-            Círculo círculo = new Círculo(radio);
+            Circulo círculo = new Circulo(radio);
             System.out.println("---------------Figura---------------\n" + círculo.toString());
         }
 
@@ -95,7 +95,7 @@ public class Aleatorios {
         cantidad -= numEquiláteros;
         for (int numEquiCreados = 0; numEquiCreados < numEquiláteros; numEquiCreados++) {
             BigDecimal lados = BigDecimal.valueOf(random() * 100 + 1);
-            TriánguloEquilátero tEquilatero = new TriánguloEquilátero(lados);
+            TrianguloEquilatero tEquilatero = new TrianguloEquilatero(lados);
             System.out.println("---------------Figura---------------\n" + tEquilatero.toString());
         }
 
@@ -106,7 +106,7 @@ public class Aleatorios {
             for (int numIsoCreados = 0; numIsoCreados < numIsósceles; numIsoCreados++) {
                 BigDecimal ladosIguales = BigDecimal.valueOf(random() * 100 + 1);
                 BigDecimal ladoDesigual = BigDecimal.valueOf(random() * 100 + 1);
-                TriánguloIsósceles tIsósceles = new TriánguloIsósceles(ladosIguales, ladoDesigual);
+                TrianguloIsosceles tIsósceles = new TrianguloIsosceles(ladosIguales, ladoDesigual);
                 System.out.println("---------------Figura---------------\n" + tIsósceles.toString());
             }
             if (cantidad > 0) {
@@ -116,7 +116,7 @@ public class Aleatorios {
                     BigDecimal lado1 = BigDecimal.valueOf(random() * 100 + 1);
                     BigDecimal lado2 = BigDecimal.valueOf(random() * 100 + 1);
                     BigDecimal lado3 = BigDecimal.valueOf(random() * 100 + 1);
-                    TriánguloEscaleno tEscaleno = new TriánguloEscaleno(lado1, lado2, lado3);
+                    TrianguloEscaleno tEscaleno = new TrianguloEscaleno(lado1, lado2, lado3);
                     System.out.println("---------------Figura---------------\n" + tEscaleno.toString());
                 }
             }
@@ -143,7 +143,7 @@ public class Aleatorios {
         for (int rectángulosCreados = 0; rectángulosCreados < numRectángulos; rectángulosCreados++) {
             BigDecimal medidaLado1 = BigDecimal.valueOf(random() * 100 + 1);
             BigDecimal medidaLado2 = BigDecimal.valueOf(random() * 100 + 1);
-            Rectángulo rectángulo = new Rectángulo(medidaLado1, medidaLado2);
+            Rectangulo rectángulo = new Rectangulo(medidaLado1, medidaLado2);
             System.out.println("---------------Figura---------------\n" + rectángulo.toString());
         }
 

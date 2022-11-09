@@ -10,15 +10,15 @@ import java.math.RoundingMode;
  *
  * @author Jose Maria
  */
-public class Rectángulo extends Rectangular {
+public class Rectangulo extends Rectangular {
     private static final int LADOSIGUALES = 2;
     private BigDecimal lados1;
     private BigDecimal lados2;
 
-    public Rectángulo() {
+    public Rectangulo() {
     }
 
-    public Rectángulo(BigDecimal lados1, BigDecimal lados2) {
+    public Rectangulo(BigDecimal lados1, BigDecimal lados2) {
         super(LADOSIGUALES);
         this.lados1 = lados1;
         this.lados2 = lados2;
@@ -38,10 +38,10 @@ public class Rectángulo extends Rectangular {
     /**
      * @return La cadena a imprimir en pantalla con los valores del rectángulo
      * <p>
-     * Método encargado de concatenar a la cadena de la clase FormasGeométricas los valores del rectángulo generado
+     * Método encargado de concatenar a la cadena de la clase FormasGeometricas los valores del rectángulo generado
      */
     public String toString() {
-        return super.toString().concat("---Rectángulo---\nLados1: " + lados1.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +
+        return super.toString().concat("---Rectangulo---\nLados1: " + lados1.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +
                 " cm\nLados2: " + lados2.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +
                 " cm\nÁrea: " + área().setScale(Main.REDONDEO, RoundingMode.HALF_UP) + " cm");
     }

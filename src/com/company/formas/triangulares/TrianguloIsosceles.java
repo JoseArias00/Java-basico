@@ -7,19 +7,19 @@ import java.math.RoundingMode;
 
 
 /**
- * Esta clase hereda de la clase Triangular y es una clase con el objeto de tipo TriánguloIsósceles
+ * Esta clase hereda de la clase Triangular y es una clase con el objeto de tipo TrianguloIsosceles
  *
  * @author Jose Maria
  */
-public class TriánguloIsósceles extends Triangular {
+public class TrianguloIsosceles extends Triangular {
     private static final int LADOSIGUALES = 2;
     private BigDecimal ladosIguales;
     private BigDecimal ladoDesigual;
 
-    public TriánguloIsósceles() {
+    public TrianguloIsosceles() {
     }
 
-    public TriánguloIsósceles(BigDecimal ladosIguales, BigDecimal ladoDesigual) {
+    public TrianguloIsosceles(BigDecimal ladosIguales, BigDecimal ladoDesigual) {
         super(LADOSIGUALES);
         this.ladosIguales = ladosIguales;
         this.ladoDesigual = ladoDesigual;
@@ -39,7 +39,7 @@ public class TriánguloIsósceles extends Triangular {
     /**
      * @return La cadena a imprimir en pantalla con los valores del triángulo isósceles
      * <p>
-     * Método encargado de concatenar a la cadena de la clase FormasGeométricas los valores del triángulo generado
+     * Método encargado de concatenar a la cadena de la clase FormasGeometricas los valores del triángulo generado
      */
     public String toString() {
         return super.toString().concat("---Triángulo Isósceles---\nLadosIguales: " + ladosIguales.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +

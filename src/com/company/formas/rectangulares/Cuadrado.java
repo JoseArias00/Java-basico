@@ -43,7 +43,7 @@ public class Cuadrado extends Rectangular {
     /**
      * @return La cadena a imprimir en pantalla con los valores del cuadrado
      * <p>
-     * Método encargado de concatenar a la cadena de la clase FormasGeométricas los valores del cuadrado generado
+     * Método encargado de concatenar a la cadena de la clase FormasGeometricas los valores del cuadrado generado
      */
     public String toString() {
         return super.toString() + "---Cuadrado---\nLados: " + longitudLado.setScale(Main.REDONDEO, RoundingMode.HALF_UP) +
