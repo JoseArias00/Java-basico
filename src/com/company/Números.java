@@ -1,24 +1,73 @@
 package com.company;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 import static com.company.UtileriaNumeros.*;
 
+/**
+ * @author Jose Maria
+ * <p>
+ * Clase para el trabajo con números
+ */
 public class Números {
-    private static final int NUMEROS_METER = 2;
 
     /**
-     * Método principal
+     * Constante que indica el total de números que pediremos por pantalla y con el que trabajaremos
      */
-    public static void main() {
+    private static final int NUMEROS_METER = 4;
+    private static List<BigDecimal> numeros;
+
+    /**
+     * @throws RedondeoExcepcion Ocurre cuando al recoger la entrada por pantalla se indica un número al que redondear negativo
+     */
+    public static void main() throws RedondeoExcepcion {
+
+        //Pediremos los datos por pantalla
+        entrada();
+
+        //Realizamos las operaciones indicadas
+        operaciones();
+    }
+
+    /**
+     * Método encargado de realizar todas las operaciones indicadas con los números de la lista
+     */
+    private static void operaciones() {
+        //Suma
+        System.out.println("La suma de estos números da: " + sumar(numeros));
+
+        //Resta
+        System.out.println("La resta de estos números da: " + restar(numeros));
+
+        //División
+        //Debido a que bigDecimal no divide entre 0 debemos comprobar que no se dividirá nunca entre 0 y en caso de que lo haga el valor sería infinito
+        System.out.println((divideEntreCero(numeros)) ? "La división de estos números da: infinito" : "La división de estos números da: " + dividir(numeros));
+
+        //Multiplicación
+        System.out.println("La multiplicación de estos números da: " + multiplicar(numeros));
+
+        //Módulo de dos números (los primeros pasados en la lista)
+        System.out.println("El módulo de dividir el primer número con el segundo da: " + modulo(numeros.get(0), numeros.get(1)));
+
+        //Comparación de todos los números de la cadena
+        System.out.println("La comparación de los números es la siguiente: " + formatoOrdenacion(ordenacion(numeros)));
+
+    }
+
+    /**
+     * @throws RedondeoExcepcion      Ocurre cuando se indica por pantalla un número negativo
+     * @throws InputMismatchException Ocurre cuando se introduce un número de redondeo fuera del rango de valores de byte
+     *                                <p>
+     *                                Método encargado de recoger los datos por pantalla
+     */
+    private static void entrada() throws RedondeoExcepcion, InputMismatchException {
         //Declaración de variables
         Scanner sc = new Scanner(System.in);
         int contador = 0;
-        List<BigDecimal> numeros = new ArrayList<>();
 
         //Recogemos los dos números introducidos por el usuario más el número de decimales al que realizar la aproximación
         System.out.println("Introduzca " + NUMEROS_METER + " números:");
@@ -32,53 +81,17 @@ public class Números {
             }
         }
 
-        //Realizamos las operaciones indicadas
-        operaciones(numeros);
-    }
-
-    /**
-     * @param primero Primer numero introducido por el usuario
-     * @param segundo Segundo numero introducido por el usuario
-     *                <p>
-     *                Método encargado de realizar las operaciones indicadas
-     */
-    private static void operaciones(final List<BigDecimal> numeros) {
-        //Realizamos las operaciones indicadas anadiendolas al arraylist
-
-        //Suma
-        System.out.println("La suma de estos números da: " + sumar(numeros));
-        System.out.println("La resta de estos números da: " + restar(numeros));
-        System.out.println("La división de estos números da: " + dividir(numeros));
-        System.out.println("La multiplicación de estos números da: " + multiplicar(numeros));
-
-        /*resultados.add(primero.subtract(segundo));  //Resta
-        resultados.add(primero.divide(segundo, redondeo, RoundingMode.HALF_UP));    //Division
-        resultados.add(primero.multiply(segundo));  //Multiplicación
-        resultados.add(primero.remainder(segundo)); //Modulo
-
-        redondear();
-
-        for (int i = 0; i < resultados.size(); i++) {
-            System.out.println(resultados.get(i));
-        }
-
-        //Realizamos la comparacion de los numeros introducidos
-        int comparacion = primero.compareTo(segundo); //Diferencia
-        if (comparacion == -1) {
-            System.out.println("El segundo número introducido es mayor que el primero");
-        } else if (comparacion == 0) {
-            System.out.println("Ambos números son iguales");
+        //Recogemos por pantalla la precisión con la que trabajaremos
+        System.out.println("Introduzca el número de decimales al que realizaremos el redondeo en el trabajo con los números(0-127):");
+        String precision = sc.nextLine();
+        if (Long.parseLong(precision) >= 0) {
+            if (Long.parseLong(precision) <= 127) {
+                setPRECISION(Byte.parseByte(precision));
+            } else {
+                throw new InputMismatchException("El número introducido supera el rango de byte");
+            }
         } else {
-            System.out.println("El primer número introducido es mayor que el segundo");
-        }*/
-    }
-
-    /**
-     * Metodo encargado de realizar los redondeos de los resultados
-     */
-    /*private static void redondear() {
-        for (int i = 0; i < resultados.size(); i++) {
-            resultados.set(i, resultados.get(i).setScale(redondeo, RoundingMode.HALF_UP));
+            throw new RedondeoExcepcion("El número de redondeo es negativo");
         }
-    }*/
+    }
 }

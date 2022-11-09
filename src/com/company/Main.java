@@ -12,7 +12,7 @@ public class Main<opcion> {
      * @param args
      * @throws ParseException Por culpa del ejercicio de fechas al usar el formato de fechas
      */
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException,RedondeoExcepcion {
         //Primero indicaremos el ejercicio a ejecutar usando scanner
         System.out.println("Indica el ejercicio a realizar: " +
                 "\n1. Operaciones con números" +
@@ -34,7 +34,7 @@ public class Main<opcion> {
      *  @param opcion El ejercicio seleccionado que le pasamos al switch
      *  @throws ParseException Por culpa del caso 3 al usar el formato de fechas
      */
-    private static void seleccion(int opcion) throws ParseException {
+    private static void seleccion(int opcion) throws ParseException,RedondeoExcepcion {
         switch (opcion){
             case 1: Números numeros = new Números();
                 numeros.main();
