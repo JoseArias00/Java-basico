@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.excepciones.RedondeoExcepcion;
+
 import java.text.ParseException;
 import java.util.Scanner;
 
@@ -12,7 +14,7 @@ public class Main<opcion> {
      * @param args
      * @throws ParseException Por culpa del ejercicio de fechas al usar el formato de fechas
      */
-    public static void main(String[] args) throws ParseException,RedondeoExcepcion {
+    public static void main(String[] args) throws ParseException, RedondeoExcepcion {
         //Primero indicaremos el ejercicio a ejecutar usando scanner
         System.out.println("Indica el ejercicio a realizar: " +
                 "\n1. Operaciones con números" +
